@@ -42,8 +42,8 @@
             if (item.value) {
                 input.value = item.value;
             }
-            form.onsubmit = validate;
         });
+        form.onsubmit = validate;
     }
 
     function validate() {
@@ -53,12 +53,17 @@
         var userName = inputUserName.value;
         var ageRegExp = /[0-9]/;
         var nameRegExp = /^user_/;
-        console.log(inputAge);
+        var checkAge;
+        var checkUserName;
         if (!ageRegExp.test(age) || age <= 0 || age > 120) {
-            alert('Your data is invalid');
+            checkAge = true;
         }
         if (!nameRegExp.test(userName)) {
+            checkUserName = true;
+        }
+        if (checkUserName || checkAge) {
             alert('Your data is invalid');
+            return false;
         }
     }
 
